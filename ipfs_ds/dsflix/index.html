@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico"> 
+
+    <title>DSFlix - 18-842 Lecture Videos</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="carousel.css" rel="stylesheet">
+    <script type="text/javascript">
+        function preloadImage(url) {
+            var img=new Image();
+            img.src=url;
+        }
+
+        function onLoad() {
+            preloadImage("img/loading_spinner.gif")
+        }
+
+        window.onload = onLoad;
+    </script>
+  </head>
+
+  <script type="text/javascript">
+    function watch_movie(name, target) {
+        var xmlHttp = null;
+        xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
+                var vid = 
+                        '<video width="500" height="300" controls>' + 
+                        '<source src="../local_node/' + name + '" type="video/mp4">' + 
+                        '</video>';
+                document.getElementById(target).innerHTML = vid;
+            }
+        }
+        var doc = '<img src="img/loading_spinner.gif">'
+        document.getElementById(target).innerHTML = doc;
+        xmlHttp.open("GET", "../cgi/run.py?action=get_file&name=" + name, true);
+        xmlHttp.send(null);
+    }
+
+  </script>
+
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">DSFlix</a>
+                <ul class="nav navbar-nav">
+                  <li ><a href="../cgi/draw_network.py">View The Network</a></li>
+                  <li ><a href="../cgi/show_browser.py">File Listing</a></li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+  <div>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>The Byzantine General</h1>
+              <span id="movie1">
+	              <img src="img/bg.png" alt="The Byzantine General">
+              </span>
+              <p>A young captain is proud to serve his country.  He always follows his orders.  But today that might change...</p>
+              <p><a class="btn btn-lg btn-primary" href="javascript:watch_movie('general.mp4', 'movie1');" role="button">Watch Now</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Tie Breaker</h1>
+              <span id="movie2">
+	            <img src="img/vote.png" alt="Tie Breaker">
+              </span>
+              <p>All the votes are in...except one.</p>
+              <p><a class="btn btn-lg btn-primary" href="javascript:watch_movie('vote.mp4', 'movie2');" role="button">Watch Now</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>The Partitioning</h1>
+              <span id="movie3">
+	            <img src="img/part.png" alt="The Partitioning">
+              </span>
+              <p>It was just another day in the life of a sysop.  But strange things started happening.  
+	      Was this just another network glitch?  Or is the system...possessed?</p>
+              <p><a class="btn btn-lg btn-primary" href="javascript:watch_movie('partition.mp4', 'movie3');" role="button">Watch Now</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; Team 2, 18-842, Spring 2015 </a></p>
+      </footer>
+  
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/holder.js"></script>
+  </body>
+</html>
